@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cumpleaños</title>
+    <style>
+        body {
+            background-color: #ffe6e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #ff66b2;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Animación de desvanecimiento */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Globos */
+        .balloon {
+            width: 50px;
+            height: 70px;
+            background-color: #ff66b2;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .balloon:nth-child(2) {
+            left: 20%;
+            animation-duration: 7s;
+            background-color: #66ccff;
+        }
+
+        .balloon:nth-child(3) {
+            left: 40%;
+            animation-duration: 5s;
+            background-color: #ffcc66;
+        }
+
+        .balloon:nth-child(4) {
+            left: 60%;
+            animation-duration: 6s;
+            background-color: #99ff99;
+        }
+
+        .balloon:nth-child(5) {
+            left: 80%;
+            animation-duration: 8s;
+            background-color: #ff9966;
+        }
+
+        /* Animación de los globos flotando */
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-300px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Cuerda del globo */
+        .string {
+            width: 2px;
+            height: 80px;
+            background-color: #333;
+            position: absolute;
+            top: 70px; /* Esto coloca la cuerda debajo del globo */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Feliz Cumpleaños!</h1>
+        <div class="balloon">
+            <div class="string"></div>
+        </div>
+        <div class="balloon">
+            <div class="string"></div>
+        </div>
+        <div class="balloon">
+            <div class="string"></div>
+        </div>
+        <div class="balloon">
+            <div class="string"></div>
+        </div>
+    </div>
+
+</body>
+</html>
