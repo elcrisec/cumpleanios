@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Animation</title>
+    <style>
+        body {
+            background-color: #fbf4f4;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #f6f0ed;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .letter {
+            display: inline-block;
+            font-size: 3rem;
+            color: #5d558b;
+            position: relative;
+            opacity: 0;
+            transition: transform 3s ease, opacity 3s ease;
+        }
+
+        .balloon {
+            width: 50px;
+            height: 70px;
+            background-color: #68da72;
+            border-radius: 50%;
+            position: absolute;
+            display: none;
+            transition: transform 3s ease, opacity 3s ease;
+        }
+
+        .string {
+            width: 2px;
+            height: 80px;
+            background-color: #333;
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-300px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>
+            <span class="letter">F</span>
+            <span class="letter">E</span>
+            <span class="letter">L</span>
+            <span class="letter">I</span>
+            <span class="letter">Z</span>
+            <span class="letter">&nbsp</span>
+            <span class="letter">&nbsp</span>
+            <span class="letter">C</span>
+            <span class="letter">U</span>
+            <span class="letter">M</span>
+            <span class="letter">P</span>
+            <span class="letter">L</span>
+            <span class="letter">E</span>
+            <span class="letter">A</span>
+            <span class="letter">Ñ</span>
+            <span class="letter">O</span>
+            <span class="letter">S</span>
+            <span class="letter">&nbsp <br></span>
+            <span class="letter"><br></span>
+            <span class="letter"></br></span>
+            <span class="letter">C</span>
+            <span class="letter">R</span>
+            <span class="letter">I</span>
+            <span class="letter">S</span>
+
+        </h1>
+
+        <!-- Globos -->
+        <div class="balloon" id="balloon1">
+            <div class="string"></div>
+        </div>
+        <div class="balloon" id="balloon2">
+            <div class="string"></div>
+        </div>
+        <div class="balloon" id="balloon3">
+            <div class="string"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const letters = document.querySelectorAll(".letter");
+            const balloons = [document.getElementById("balloon1"), document.getElementById("balloon2"), document.getElementById("balloon3")];
+            let delay = 500;
+
+            function resetLettersAndBalloons() {
+                letters.forEach(letter => {
+                    letter.style.transform = "translateY(0)";
+                    letter.style.opacity = 0;
+                });
+                balloons.forEach(balloon => {
+                    balloon.style.transform = "translateY(0)";
+                    balloon.style.opacity = 1;
+                    balloon.style.display = "none";
+                    balloon.style.padding = "top"
+                });
+            }
+
+            function animateLettersAndBalloons() {
+                letters.forEach((letter, index) => {
+                    setTimeout(() => {
+                        letter.style.opacity = 1;
+                        letter.style.transform = "translateY(-50px)";
+                        
+                       
+                        if (index === letters.length - 1) {
+                            // Cuando todas las letras están visibles, mostrar los globos
+                            balloons.forEach((balloon, i) => {
+                                balloon.style.display = "block";
+                                balloon.style.left = `${letters[i * 7].offsetLeft + 50}px`;
+                                balloon.style.top = `${letters[i * 7].offsetLeft + 30}px`;
+
+                                // Subir todas las letras y s
+                                setTimeout(() => {
+                                    letters.forEach(l => {
+                                        l.style.transform = "translateY(-300px)";
+                                        l.style.opacity = 0;
+                                    });
+                                    balloons.forEach(b => {
+                                        b.style.transform = "translateY(-300px)";
+                                        b.style.opacity = 0;
+                                    });
+                                }, 1000);
+                            });
+                        }
+                    }, delay);
+                    delay += 100;
+                });
+
+                // Después de cierto tiempo, reiniciar las letras y globos y repetir el ciclo
+                setTimeout(() => {
+                    resetLettersAndBalloons();
+                    delay = 800;  // Reiniciar el delay
+                    animateLettersAndBalloons();  // Repetir el ciclo
+                }, 8000);  // Ajustar el tiempo para que el ciclo sea infinito
+            }
+
+            animateLettersAndBalloons();
+        });
+    </script>
+
+</body>
+</html>
